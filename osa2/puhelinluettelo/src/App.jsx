@@ -131,8 +131,9 @@ const App = () => {
         setMessage(`Updated number for ${updatedPerson.name}`)
         setTimeout(() => {setMessage(null)}, 5000)
       })
-      .catch(error => 
-        {setErrorMessage(`Information on ${changedPerson.name} has already been removed from the server`)})
+      .catch(error => {
+        setErrorMessage(`Information on ${changedPerson.name} has already been removed from the server`)
+        setTimeout(()=> {setErrorMessage(null)}, 5000)})
     }}
     else
     {const personObject = {
@@ -150,6 +151,10 @@ const App = () => {
       setDisplay(display.concat(addedPerson))
       setMessage(`Added ${personObject.name}`)
       setTimeout(()=> {setMessage(null)}, 5000)
+    })
+    .catch(error => {
+      setErrorMessage(error.response.data.error)
+      setTimeout(()=> {setErrorMessage(null)}, 5000 )
     })}
 
 
